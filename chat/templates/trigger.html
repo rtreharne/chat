@@ -79,13 +79,18 @@
             }
         }
 
-        // Add event listeners for touch events
-        triggerButton.addEventListener('touchstart', startPress);
-        triggerButton.addEventListener('touchend', finishPress);
+        // Detect if the device supports touch events
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
 
-        // Add event listeners for mouse events
-        triggerButton.addEventListener('mousedown', startPress);
-        triggerButton.addEventListener('mouseup', finishPress);
+        if (isTouchDevice) {
+            // Use touch events on touch devices
+            triggerButton.addEventListener('touchstart', startPress);
+            triggerButton.addEventListener('touchend', finishPress);
+        } else {
+            // Use mouse events on non-touch devices
+            triggerButton.addEventListener('mousedown', startPress);
+            triggerButton.addEventListener('mouseup', finishPress);
+        }
 
         // Add event listeners for keyboard events
         window.addEventListener('keydown', function(event) {
@@ -114,8 +119,7 @@
                 }
             }
             return cookieValue;
-}
-
+        }
     </script>        
 
 </body>
