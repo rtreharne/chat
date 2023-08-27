@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from . import sound
 import json
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request):
@@ -12,6 +13,7 @@ def trigger(request):
 
 from django.http import JsonResponse
 
+@csrf_exempt
 def trigger_event(request):
     if request.method == 'POST':
         data = json.loads(request.body)
