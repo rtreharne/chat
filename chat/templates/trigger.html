@@ -46,10 +46,14 @@
         let pressDuration = 0;
 
         triggerButton.addEventListener('mousedown', function() {
+            event.preventDefault(); // Prevent default touch behavior
+            triggerButton.classList.add('active');
             pressStartTime = Date.now();
         });
 
         triggerButton.addEventListener('mouseup', function() {
+            event.preventDefault(); // Prevent default touch behavior
+            triggerButton.classList.remove('active');
             if (pressStartTime) {
                 pressDuration = (Date.now() - pressStartTime) / 1000; // Convert to seconds
                 pressStartTime = null;

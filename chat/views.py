@@ -19,7 +19,7 @@ def trigger_event(request):
         data = json.loads(request.body)
         duration = data.get('duration', 0)
         print(duration)
-        if duration < 0.1:
+        if duration < 0.2:
             duration = 0.2
         else:
             duration = 0.5
