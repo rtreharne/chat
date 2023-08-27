@@ -133,3 +133,5 @@ CACHES = {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
     }
 }
+
+CSRF_COOKIE_SECURE = False
