@@ -7,7 +7,7 @@ def play_sound(frequency, duration):
     t = np.linspace(0, duration, int(sample_rate * duration), False)
     wave = 0.5 * np.sin(2 * np.pi * frequency * t)
 
-    sd.play(wave, sample_rate, blocksize=2048)
+    sd.play(wave, sample_rate, blocksize=4096)
     sd.wait()
 
 if __name__ == "__main__":

@@ -19,11 +19,13 @@ def trigger_event(request):
         data = json.loads(request.body)
         duration = data.get('duration', 0)
         print(duration)
-        if duration < 0.2:
+        if duration < 0.1:
             duration = 0.2
+        else:
+            duration = 0.5
 
         # Perform your desired action here using the duration
-        sound.play_sound(440, duration)
+        sound.play_sound(900, duration)
 
         message = f"Event triggered on the server! Duration: {duration} seconds"
         return JsonResponse({"message": message})
