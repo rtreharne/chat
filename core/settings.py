@@ -123,19 +123,12 @@ STATIC_URL = '/static/'
 ASGI_APPLICATION = "core.routing.application"
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [os.environ['REDIS_URL']],
-        },
-    },
-}
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+        } 
+    }
 
 CACHES = {
     "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": os.environ['REDIS_URL'],
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient"
-        }
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
     }
 }
