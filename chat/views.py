@@ -18,7 +18,7 @@ def message_event(request):
     print("Hello!")
     if request.method == "POST":
 
-        message = json.loads(request.body).get("message", "")
+        message = json.loads(request.body).get("message", "").lower()
 
         first_word = message.split()[0].lower()
         if first_word == "speak":
