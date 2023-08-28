@@ -32,7 +32,7 @@ def morse_to_sound(morse_code, frequency=880, duration=0.2):
             play_sound(frequency, duration * 4)
         else:
             time.sleep(duration*5)
-        
+        time.sleep(duration)
 
 def play_sound(frequency, duration):
     sample_rate = 44100  # Standard audio sample rate
