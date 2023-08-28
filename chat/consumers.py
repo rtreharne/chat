@@ -1,5 +1,6 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
+from . import sound
 
 
 class ChatRoomConsumer(AsyncWebsocketConsumer):
@@ -38,9 +39,16 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
         message = event['message']
         username = event['username']
 
+        first_word = message.split()[0]
+        if first_word == "SPEAK":
+            message = message.replace(first_word, "", 1)
+            sound.text_to_speech(message, pitch_shift=0)
+
         await self.send(text_data=json.dumps({
             'message': message,
             'username': username,
         }))
+
+        
 
     pass
