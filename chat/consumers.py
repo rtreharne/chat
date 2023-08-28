@@ -39,11 +39,11 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
         message = event['message']
         username = event['username']
 
-        first_word = message.split()[0]
-        if first_word == "SPEAK":
+        first_word = message.split()[0].lower()
+        if first_word == "speak":
             message = message.replace(first_word, "", 1).strip()
-            sound.text_to_speech(message, pitch_shift=0)
-        elif first_word == "MORSE":
+            sound.text_to_speech(message)
+        elif first_word == "morse":
             message = message.replace(first_word, "", 1).strip()
             # if first word is number, use that as duration
             if message[0].isdigit():

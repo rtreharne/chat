@@ -34,6 +34,14 @@
     {{ request.user.username|json_script:"user_username" }}
     {{ room_name|json_script:"room-name" }}
     <script>
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent form submission
+                submit.click(); // Programmatically click the button
+            }
+        });
+        
         const user_username = JSON.parse(document.getElementById('user_username').textContent);
         document.querySelector('#submit').onclick = function (e) {
             const messageInputDom = document.querySelector('#input');

@@ -45,7 +45,7 @@ def play_sound(frequency, duration):
 def text_to_speech(text, voice_id='com.apple.speech.synthesis.voice.Alex', filename=None, pitch_shift=0):
     engine = pyttsx3.init()
     voices = engine.getProperty('voices')
-    engine.setProperty('rate', engine.getProperty('rate') + pitch_shift)
+    engine.setProperty('rate', 0.7)
         
     if filename:
         engine.save_to_file(text, filename)
