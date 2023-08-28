@@ -27,11 +27,12 @@ def morse_to_sound(morse_code, frequency=880, duration=0.2):
     
     for char in morse_code:
         if char == '.':
-            play_sound(frequency, duration)
+            play_sound(frequency, duration*2)
         elif char == '-':
-            play_sound(frequency, duration * 3)
+            play_sound(frequency, duration * 4)
         else:
             time.sleep(duration*5)
+        
 
 def play_sound(frequency, duration):
     sample_rate = 44100  # Standard audio sample rate
