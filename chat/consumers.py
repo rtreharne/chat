@@ -39,23 +39,6 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
         message = event['message']
         username = event['username']
 
-        first_word = message.split()[0].lower()
-        if first_word == "speak":
-            message = message.replace(first_word, "", 1).strip()
-            sound.text_to_speech(message)
-        elif first_word == "morse":
-            message = message.replace(first_word, "", 1).strip()
-            # if first word is number, use that as duration
-            if message[0].isdigit():
-                duration_factor = int(message[0])
-                message = message[1:].strip()
-            else:
-                duration_factor = 1
-            morse_output = sound.string_to_morse(message)
-            sound.morse_to_sound("--", frequency=440, duration=1)
-            sound.morse_to_sound(morse_output, duration=0.2/duration_factor)
-            sound.morse_to_sound("..", frequency=440, duration=1)
-
         await self.send(text_data=json.dumps({
             'message': message,
             'username': username,
