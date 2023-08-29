@@ -29,7 +29,7 @@ def morse_to_sound(morse_code, frequency=880, duration=0.2):
         if char == '.':
             play_sound(frequency, duration*2)
         elif char == '-':
-            play_sound(frequency, duration * 4)
+            play_sound(frequency, duration * 6)
         else:
             time.sleep(duration*5)
         time.sleep(duration)
