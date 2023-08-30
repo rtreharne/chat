@@ -28,7 +28,7 @@ def message_event(request):
             sound.play_wav_file()
         elif first_word in ["chunk", "sloth"]:
             sound.play_wav_file(file_name="chat/sound_files/hey-you-guys.wav")
-        elif first_word == ["morse", "m", "beep"] :
+        elif first_word in ["morse", "m", "beep"] :
             message = message.replace(first_word, "", 1).strip()
             # if first word is number, use that as duration
             if message[0].isdigit():
