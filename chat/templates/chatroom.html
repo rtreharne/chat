@@ -9,17 +9,23 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>El Telegrafico Chavez-Treharne</title>
 </head>
 
 <body>
+
+    <style>
+        body {
+            font-size: 1.5rem;
+        }
+    </style>
 
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-6">
                 <form>
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1" class="h4 pt-5">El Telegrafo Chavez</label>
+                        <label for="exampleFormControlTextarea1" class="h4 pt-5">El Telegrafo Chavez-Treharne</label>
                         <p><a href="/chat/trigger/">Morse Trigger</a></p>
                         <textarea class="form-control" id="chat-text" rows="10"></textarea><br>
                     </div>
@@ -86,6 +92,15 @@
             const data = JSON.parse(e.data);
             console.log(data)
             document.querySelector('#chat-text').value += (data.username + ': ' + data.message + '\n')
+        }
+
+        const chatText = document.querySelector('#chat-text');
+        chatText.scrollTop = chatText.scrollHeight; // Scroll to the bottom by default
+
+        chatSocket.onmessage = function (e) {
+            const data = JSON.parse(e.data);
+            chatText.value += (data.username + ': ' + data.message + '\n');
+            chatText.scrollTop = chatText.scrollHeight; // Scroll to the bottom when new content is added
         }
     </script>
 
