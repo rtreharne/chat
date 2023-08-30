@@ -70,6 +70,11 @@ def play_wav_file(file_name = "chat/sound_files/taunt.wav"):
     while pygame.mixer.music.get_busy():
         pygame.time.Clock().tick(10)
 
+def play_mp3_file(file_path):
+    sound = AudioSegment.from_mp3(file_path)
+    play_obj = sa.play_buffer(sound.raw_data, num_channels=sound.channels, bytes_per_sample=sound.sample_width, sample_rate=sound.frame_rate)
+    play_obj.wait_done()
+
 if __name__ == "__main__":
     frequency = 440  # A4 note frequency (Hz)
     duration = 2     # Duration in seconds

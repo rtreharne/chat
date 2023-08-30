@@ -26,6 +26,8 @@ def message_event(request):
             sound.text_to_speech(message)
         elif first_word in ["taunt", "pedro"]:
             sound.play_wav_file()
+        elif first_word in ["chunk", "sloth"]:
+            sound.play_wav_file(file_name="chat/sound_files/hey-you-guys.wav")
         elif first_word == ["morse", "m", "beep"] :
             message = message.replace(first_word, "", 1).strip()
             # if first word is number, use that as duration
