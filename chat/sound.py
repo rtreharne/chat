@@ -2,6 +2,9 @@ import sounddevice as sd
 import numpy as np
 import time
 import pyttsx3
+import playsound
+import os
+import pygame
 
 MORSE_CODE_DICT = {
     'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....',
@@ -55,21 +58,36 @@ def text_to_speech(text, voice_id='com.apple.speech.synthesis.voice.Alex', filen
         engine.runAndWait()
 
 
+def play_wav_file(file_name = "chat/sound_files/taunt.wav"):
+
+    # Get the absolute path of the current directory
+    current_directory = os.getcwd()
+
+    # Construct the full file path
+    file_path = os.path.join(current_directory, file_name)
+    pygame.mixer.init()
+    pygame.mixer.music.load(file_path)
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(10)
+
 if __name__ == "__main__":
     frequency = 440  # A4 note frequency (Hz)
     duration = 2     # Duration in seconds
 
     play_sound(frequency, duration)
 
-    # Using pyttsx3 to convert text to speech and play the output
-    text_to_speech("Hello, this is a test.", voice_id='com.apple.speech.synthesis.voice.Alex')
 
-    # Example usage
-    input_text = "HELLO WORLD"
-    morse_output = string_to_morse(input_text)
-    print(morse_output)
-    
-    morse_output = string_to_morse(input_text)
-    morse_to_sound("--", frequency=440, duration=1)
-    morse_to_sound(morse_output)
-    morse_to_sound("..", frequency=440, duration=1)
+    # Specify the path to your .wav file
+    file_name = "chat/sound_files/taunt.wav"
+
+    # Get the absolute path of the current directory
+    current_directory = os.getcwd()
+
+    # Construct the full file path
+    file_path = os.path.join(current_directory, file_name)
+
+    if os.path.exists(file_path):
+        play_wav_file(file_path)
+    else:
+        print("WAV file not found.")
