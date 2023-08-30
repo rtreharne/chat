@@ -2,7 +2,6 @@ import sounddevice as sd
 import numpy as np
 import time
 import pyttsx3
-import playsound
 import os
 import pygame
 
